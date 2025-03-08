@@ -1,0 +1,45 @@
+Day-8
+
+Ques 1: Move Zeroes
+
+Code:
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int i=0;
+        int m=nums.size();
+        while(i<m){
+            if(nums[i]==0){
+                nums.push_back(0);
+                nums.erase(nums.begin()+i);
+                m--;
+            }
+            else{
+                i++;
+            }
+        }
+    }
+};
+
+T.C.: O(N)
+S.C.: O(1)
+
+Ques 2: Rotate Array
+
+Code:
+class Solution {
+public:
+    //Solving 37/38 test cases from this. Could'nt find the way to solve the last one.
+    void rotate(vector<int>& nums, int k) {
+        int m=nums.size();
+        for(int i=0;i<k;i++){
+            nums.insert(nums.begin(),nums[m-1]);
+            nums.erase(nums.end()-1);
+        }
+    }
+};
+
+T.C.: O(N)
+S.C.: O(1)
+
+Github Repo link:
