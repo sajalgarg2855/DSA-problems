@@ -1,0 +1,74 @@
+Day-12:
+
+Q1 Binary search
+
+Code:
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int n=-1;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]==target){
+                n=i;
+                break;
+            }
+        }
+        return n;
+    }
+};
+
+T.C.: O(N)
+S.C.: O(1)
+
+Q2 Find First and Last Position of Element in Sorted Array
+
+Code:
+class Solution {
+public:
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int m=0;
+        int n=nums.size();
+        vector<int>ans(2,-1);
+        for(int i=0;i<n;i++){
+            if(nums[i]==target){
+                ans[m]=i;
+                m=1;
+            }
+        }
+        if(ans[0]==-1) ans[0]=ans[1];
+        if(ans[1]==-1) ans[1]=ans[0];
+        return ans;
+    }
+};
+
+T.C.: O(N)
+S.C.: O(1)
+
+Q3 Search Insert Position
+
+Code:
+class Solution {
+public:
+    int searchInsert(vector<int>& nums, int target) {
+        int n=nums.size();
+        int m;
+        int c=0;
+        for(int i=0;i<n;i++){
+            if(nums[i]==target){
+                m=i;
+                c++;
+            }
+        }
+        if(c==0){
+            nums.push_back(target);
+            sort(nums.begin(),nums.end());
+            for(int i=0;i<n+1;i++){
+                if(nums[i]==target) m=i;
+            }
+        }
+        return m;
+    }
+};
+
+T.C.: O(NlogN)
+S.C.: O(1)
