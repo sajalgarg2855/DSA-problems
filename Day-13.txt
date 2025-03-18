@@ -5,25 +5,61 @@ Q1 Ceil the floor
 Code:
 pair<int, int> getFloorAndCeil(vector<int> &a, int n, int x) {
 	// Write your code here.
-	pair<int,int>ans(2,-1);
-	int flr=a[0];
-	int cel=a[n-1];
-	for(int i=0;i<n;i++){
-		if(a[i]<=x){
-			flr=max(flr,a[i]);
+	int left=0;
+	int right=n-1;
+	int flr;
+	int cel;
+	pair <int,int> ans={-1,-1};
+	while(left<=right){
+		int mid=(left+right)/2;
+		if(a[mid]==x){
+			flr=a[mid];
+			cel=a[mid];
+			ans.first=flr;
+			ans.second=cel;
+			return ans;
 		}
-		if(a[i]>=x){
-			cel=min(cel,a[i]);
+		else if(a[mid]<x) left=mid+1;
+		else right=mid-1;
+	}
+	left=0;
+	right=n-1;
+	while(left<=right){
+		if(a[0]>x) break;
+		else{
+			int mid=(left+right)/2;
+			if(a[mid]<x){
+				left=mid+1;
+			}
+			else{
+				right=mid-1;
+			}
+			if(a[mid]<x){
+				ans.first=a[mid];
+			}
 		}
 	}
-	if(!(flr<=x)) flr=-1;
-	if(!(cel>=x)) cel=-1;
-	ans.first=flr;
-	ans.second=cel;
+	left=0;
+	right=n-1;
+	while(left<=right){
+		if(a[n-1]<x) break;
+		else{
+			int mid=(left+right)/2;
+			if(a[mid]<x){
+				left=mid+1;
+			}
+			else{
+				right=mid-1;
+			}
+			if(a[mid]>x){
+				ans.second=a[mid];
+			}
+		}
+	}
 	return ans;
 }
 
-T.C.- O(N)
+T.C.- O(NlogN)
 S.C.- O(1)
 
 Q2 Find minimum in rotated sorted array
