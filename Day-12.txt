@@ -72,5 +72,5 @@ public:
     }
 };
 
-T.C.: O(NlogN)
+T.C.: O(logN)
 S.C.: O(1)
