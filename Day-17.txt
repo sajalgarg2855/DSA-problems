@@ -25,3 +25,32 @@ public:
 
 T.C.: O(N)
 S.C.: O(1)
+
+Q2 Remove Outermost Parentheses
+
+Code:
+class Solution {
+public:
+    string removeOuterParentheses(string s) {
+        int len=s.size();
+        int left=0;
+        int right=0;
+        int m=0;
+        string t=s;
+        for(int i=0;i<len;i++){
+            if (s[i]=='(') left++;
+            else right++;
+            if(left==right){
+                t.erase(i-m,1);
+                t.erase(i-2*left+1-m,1);
+                left=0;
+                right=0;
+                m=m+2;
+            }
+        }
+        return t;
+    }
+};
+
+T.C.: O(N)
+S.C.: O(N)
